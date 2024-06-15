@@ -1,18 +1,15 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React from 'react';
+import '../Style/Navbar.css';
+import myimg from '../assets/margshala_image.png';
 
-function Navbar() {
-  const navbarStyle = {
-    backgroundColor: "lightblue",
-  };
-
+const Navbar = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
-        Login
+    <nav className="navbar navbar-expand-lg">
+      <a className="navbar-brand" href="#">
+        <img src={myimg} alt="logo" className="navbar-logo" />
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -20,24 +17,24 @@ function Navbar() {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">
-              Home <span class="sr-only">(current)</span>
+      <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul className="navbar-nav">
+          <li className="nav-item active">
+            <a className="nav-link" href="#">
+              Home <span className="sr-only">(current)</span>
             </a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
+          <li className="nav-item">
+            <a className="nav-link" href="#">
               Link
             </a>
           </li>
-          <li class="nav-item dropdown">
+          <li className="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              className="nav-link dropdown-toggle"
               href="#"
               id="navbarDropdown"
               role="button"
@@ -47,16 +44,16 @@ function Navbar() {
             >
               Dropdown
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">
-                Action
+            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a className="dropdown-item" href="#">
+                <i className="fas fa-action"></i> Action
               </a>
-              <a class="dropdown-item" href="#">
-                Another action
+              <a className="dropdown-item" href="#">
+                <i className="fas fa-another-action"></i> Another action
               </a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">
-                Something else here
+              <div className="dropdown-divider"></div>
+              <a className="dropdown-item" href="#">
+                <i className="fas fa-something-else"></i> Something else here
               </a>
             </div>
           </li>
@@ -64,6 +61,6 @@ function Navbar() {
       </div>
     </nav>
   );
-}
+};
 
 export default Navbar;
