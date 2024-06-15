@@ -4,15 +4,8 @@ import Home from "./pages/home";
 import Jobs from "./pages/jobs";
 import Landing from "./pages/landing";
 import Display from "./pages/display";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import BusinessList from "./components/BusinessList";
-import UserProfileForm from "./components/UserProfile";
 import LocationComponent from "./pages/Location";
-import DairyFarmingContent from "./pages/study/agriculture";
-import NatureGuideContent from "./pages/study/nature";
-import PineNeedleGasificationContent from "./pages/study/renewable";
-import EcoTourismContent from "./pages/study/house";
-
+import DairyFarmingContent from "./pages/study";
 
 function App() {
   return (
