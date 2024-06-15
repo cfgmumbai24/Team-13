@@ -4,10 +4,8 @@ import Home from "./pages/home";
 import Jobs from "./pages/jobs";
 import Landing from "./pages/landing";
 import Display from "./pages/display";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import BusinessList from "./components/BusinessList";
-import UserProfileForm from "./components/UserProfile";
 import LocationComponent from "./pages/home/Components/LocationComponent";
+import NewOpening from "./pages/jobopening";
 
 function App() {
   return (
@@ -20,6 +18,7 @@ function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/display" element={<Display />} />
+          <Route path="/NewOpening" element={<NewOpening />} />
         </Routes>
       </Router>
     </div>

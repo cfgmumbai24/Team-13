@@ -8,29 +8,37 @@
     margin-bottom: 40px;
     padding: 20px;
     border-radius: 8px;
+
   }
   
+  /* Lightest Blue */
   .whatIs {
-    background-color: #e0f7fa; /* Light Cyan */
+    background-color: #e3f2fd; 
   }
   
+  /* Light Blue */
   .whatYouGet {
-    background-color: #fff9c4; /* Light Yellow */
+    background-color: #bbdefb; 
   }
   
-  .oppertunity {
-    background-color: #ffe0b2;
+  /* Light Blue */
+  .opportunity {
+    background-color: #b3e5fc;
   }
+  
+  /* Slightly Darker Light Blue */
   .achievers {
-    background-color: #ffe0b2; /* Light Orange */
+    background-color: #90caf9;
   }
   
+  /* Light Blue with a hint of Purple */
   .preRequisites {
-    background-color: #d1c4e9; /* Light Purple */
+    background-color: #b2dfdb;
   }
   
+  /* Light Blue with a hint of Green */
   .howToApply {
-    background-color: #c8e6c9; /* Light Green */
+    background-color: #b2ebf2;
   }
   
   .section h2 {
@@ -50,7 +58,8 @@
   }
   
   .achiever {
-    flex: 1 1 calc(50% - 20px); /* White background for achievers */
+    flex: 1 1 calc(50% - 20px);
+    background-color: #ffffff; /* White background for achievers */
     padding: 20px;
     border-radius: 8px;
     max-width: 500px;
@@ -61,7 +70,7 @@
       flex: 1 1 100%;
     }
   }
-
+  
   .applyButton {
     display: inline-block;
     padding: 10px 20px;
