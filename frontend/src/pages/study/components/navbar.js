@@ -59,14 +59,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-
-      <div className="social-icons">
-        <a href="#facebook" className="social-icon"><i className="fab fa-facebook-f"></i></a>
-        <a href="#twitter" className="social-icon"><i className="fab fa-twitter"></i></a>
-        <a href="#linkedin" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-        <a href="#youtube" className="social-icon"><i className="fab fa-youtube"></i></a>
-        <a href="#instagram" className="social-icon"><i className="fab fa-instagram"></i></a>
-      </div>
     </nav>
   );
 };
