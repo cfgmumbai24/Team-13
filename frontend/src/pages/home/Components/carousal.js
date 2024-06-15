@@ -2,7 +2,7 @@ import React from 'react';
 import { Carousel } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap CSS
 import styles from '../Style/CarouselComponent.module.css'; // Import CSS module for additional styling
-import image1 from '../Assets/Tijil.jpg'
+// import image1 from '../Assets/Tijil.jpg'
 
 const CarouselComponent = () => {
   return (
@@ -11,7 +11,7 @@ const CarouselComponent = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={image1}
+            // src={image1}
             alt="First slide"
           />
           <Carousel.Caption>
@@ -22,7 +22,7 @@ const CarouselComponent = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={image1}
+            // src={image1}
             alt="Second slide"
           />
           <Carousel.Caption>
@@ -33,7 +33,7 @@ const CarouselComponent = () => {
         <Carousel.Item>
           <img
             className="d-block w-100"
-            src={image1}
+            // src={image1}
             alt="Third slide"
           />
           <Carousel.Caption>
