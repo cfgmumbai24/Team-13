@@ -4,8 +4,8 @@ import Home from "./pages/home";
 import Jobs from "./pages/jobs";
 import Landing from "./pages/landing";
 import Display from "./pages/display";
-import LocationComponent from "./pages/home/Components/LocationComponent";
-import NewOpening from "./pages/jobopening";
+import LocationComponent from "./pages/Location";
+import DairyFarmingContent from "./pages/study";
 
 function App() {
   return (
@@ -13,12 +13,13 @@ function App() {
 
       <Router>
         <Routes>
-          {/* <Route exact path="/home" element={<Home />} /> */}
           <Route path="/" element={<Home />} />
           <Route path="/landing" element={<Landing />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/display" element={<Display />} />
           <Route path="/NewOpening" element={<NewOpening />} />
+          <Route path="/location" element={<LocationComponent />} />
+          <Route path="/dairy" element={<DairyFarmingContent />} />
         </Routes>
       </Router>
     </div>

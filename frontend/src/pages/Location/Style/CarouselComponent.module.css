@@ -1,0 +1,29 @@
+.carouselContainer {
+    width: 100%;
+    max-width: 600px; /* Adjust as per your design */
+    margin: 20 auto;
+    background-color: lightblue;
+    padding: 20px;
+  }
+  
+  .carouselTextH {
+    color: rgb(47, 45, 45);
+    font-weight: 1000;
+    margin-top: 100;
+  }
+
+  .carouselText {
+    color: black;
+    font-weight: 500;
+  }
+
+  #img{
+    height: 25px;
+    width:50px;
+    padding-top: 50;
+  }
+
+  .small-space {
+    margin: 0; /* Remove default margin */
+    line-height: 1em; /* Adjust line-height to control space */
+}

@@ -1,50 +1,100 @@
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 from pymongo import MongoClient
-from flask import request, jsonify
 
 app = Flask(__name__)
-CORS(app)
+CORS(app)  # Enable CORS for all routes
 
 # Connect to MongoDB for business.py
 client = MongoClient('localhost', 27017)
 db = client['business_db']
 collection = db['businesses']
 
-# Connect to MongoDB for user profiles
-client_profiles = MongoClient('localhost', 27017)
-db_profiles = client_profiles['user_profiles']
-collection_profiles = db_profiles['profiles']
+# Example business data (could be loaded from a database or file)
+business_data = {
+    "businesses": [
+        {
+            "name": "Renewable assets",
+            "asset_requirements": [
+                {"asset": "Land area", "weight": 3},
+                {"asset": "Pine needles", "weight": 2},
+                {"asset": "Storage space", "weight": 1}
+            ],
+            "skill_requirements": [
+                {"skill": "Technical training", "weight": 3},
+                {"skill": "Power operators", "weight": 2},
+                {"skill": "Maintenance of machines", "weight": 1}
+            ]
+        },
+        {
+            "name": "Homestays",
+            "asset_requirements": [
+                {"asset": "Enough sightseeing spots around the location", "weight": 3},
+                {"asset": "Infrastructure facilities", "weight": 2},
+                {"asset": "Advertisement and promotion capital", "weight": 1}
+            ],
+            "skill_requirements": [
+                {"skill": "Hospitality skills", "weight": 3},
+                {"skill": "Verbal skills", "weight": 2}
+            ]
+        },
+        {
+            "name": "Tourism",
+            "asset_requirements": [
+                {"asset": "Camping kit and basic amenities", "weight": 1},
+                {"asset": "Camera", "weight": 2},
+                {"asset": "Local rich natural areas with diverse bird and wildlife", "weight": 3}
+            ],
+            "skill_requirements": [
+                {"skill": "Verbal skills", "weight": 3},
+                {"skill": "Photography", "weight": 1},
+                {"skill": "Knowledge", "weight": 2}
+            ]
+        },
+        {
+            "name": "Dairy Farming",
+            "asset_requirements": [
+                {"asset": "Land for sheltering", "weight": 3},
+                {"asset": "Cattle", "weight": 2},
+                {"asset": "Cattle feedstock", "weight": 1}
+            ],
+            "skill_requirements": [
+                {"skill": "Animal keeping", "weight": 3},
+                {"skill": "Animal healthcare", "weight": 1},
+                {"skill": "Dairy product development", "weight": 2}
+            ]
+        }
+    ]
+}
 
+businesses = business_data["businesses"]
 
-# Routes for business.py
-from business import business_bp
-app.register_blueprint(business_bp, url_prefix='/api')
+def calculate_weighted_score(user_input, business):
+    score = 0
+    for asset in business["asset_requirements"]:
+        if asset["asset"] in user_input["assets"]:
+            score += asset["weight"]
+    for skill in business["skill_requirements"]:
+        if skill["skill"] in user_input["skills"]:
+            score += skill["weight"]
+    return score
 
+@app.route('/recommend', methods=['POST'])
+def recommend():
+    user_input = request.json
+    print("Received user input:", user_input)
 
-# Routes for user profiles
-@app.route('/api/profile', methods=['POST'])
-def create_profile():
-    data = request.get_json()
+    # Calculate scores for each business
+    scores = []
+    for business in businesses:
+        score = calculate_weighted_score(user_input, business)
+        scores.append((business["name"], score))
 
-    # Check if email (primary key) already exists
-    existing_profile = collection_profiles.find_one({"email": data["email"]})
-    if existing_profile:
-        return jsonify({"error": "Email already exists"}), 400
+    # Sort businesses by score
+    sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
 
-    # Insert new profile
-    result = collection_profiles.insert_one(data)
-    return jsonify({"message": "Profile created successfully", "profile_id": str(result.inserted_id)}), 201
-
-
-@app.route('/api/profile/<email>', methods=['GET'])
-def get_profile(email):
-    profile = collection_profiles.find_one({"email": email})
-    if profile:
-        return jsonify(profile)
-    else:
-        return jsonify({"error": "Profile not found"}), 404
-
+    # Return the sorted list of business recommendations
+    return jsonify(sorted_scores)
 
 if __name__ == '__main__':
     app.run(debug=True)

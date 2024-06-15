@@ -4,10 +4,10 @@ import myimg from '../Assets/margshala_image.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      {<a className="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg">
+      <a className="navbar-brand" href="#">
         <img src={myimg} alt="logo" className="navbar-logo" />
-      </a>}
+      </a>
       <button
         className="navbar-toggler"
         type="button"
@@ -20,8 +20,8 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+      <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul className="navbar-nav">
           <li className="nav-item active">
             <a className="nav-link" href="#">
               Home <span className="sr-only">(current)</span>
@@ -46,14 +46,14 @@ const Navbar = () => {
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <a className="dropdown-item" href="#">
-                Action
+                <i className="fas fa-action"></i> Action
               </a>
               <a className="dropdown-item" href="#">
-                Another action
+                <i className="fas fa-another-action"></i> Another action
               </a>
               <div className="dropdown-divider"></div>
               <a className="dropdown-item" href="#">
-                Something else here
+                <i className="fas fa-something-else"></i> Something else here
               </a>
             </div>
           </li>

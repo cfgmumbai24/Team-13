@@ -24,6 +24,9 @@ function OptionComponent() {
     } else if (selectedAnswer === 'I need resources for my business') {
       navigate('/');
     }
+    else if (selectedAnswer === 'Apply for Swarozgar Fellowship') {
+      navigate('/jobs');
+    }
   };
 
   return (

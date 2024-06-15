@@ -23,7 +23,7 @@ function QuestionsComponent() {
   return (
     <div className={styles.questionnaire}>
       <div className={styles.questionContainer}>
-        <h3>{question.question}</h3><br/>
+        <h3>{question.question}</h3><br />
         <div className={styles.questionbox}>
           <button
             className={styles.button}
@@ -31,8 +31,8 @@ function QuestionsComponent() {
           >
             Starting/Expanding a business
           </button>
-          <br/>
-          <br/>
+          <br />
+          <br />
           <button
             className={styles.button}
             onClick={() => handleAnswer('Exploring jobs near me')}
