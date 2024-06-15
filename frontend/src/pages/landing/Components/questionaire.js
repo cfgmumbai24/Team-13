@@ -14,9 +14,12 @@ function QuestionsComponent() {
     setAnswer(selectedAnswer);
     // Redirect based on the selected answer
     if (selectedAnswer === 'Starting/Expanding a business') {
-      navigate('/jobs');
+      navigate('/display');
     } else if (selectedAnswer === 'Exploring jobs near me') {
       navigate('/');
+    }
+    else if (selectedAnswer === 'Businesses near me') {
+      navigate('/jobs');
     }
   };
 
@@ -38,6 +41,14 @@ function QuestionsComponent() {
             onClick={() => handleAnswer('Exploring jobs near me')}
           >
             Exploring jobs near me
+          </button>
+          <br/>
+          <br/>
+          <button
+            className={styles.button}
+            onClick={() => handleAnswer('Businesses near me')}
+          >
+            Businesses near me
           </button>
         </div>
       </div>
