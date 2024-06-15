@@ -1,0 +1,36 @@
+/* Navbar.css */
+
+/* Logo size and alignment */
+.navbar-logo {
+  max-height: 50px; /* Adjust as needed */
+  max-width: 500px; /* Adjust as needed */
+}
+
+/* Navbar background color */
+.navbar {
+  background-color: #e6edef !important; /* Override any other background color */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* Navbar alignment */
+  .navbar-brand {
+    margin-right: auto !important; /* Align logo to the left */
+  }
+
+  /* Navbar toggle button */
+  .navbar-toggler {
+    order: 1; /* Move the toggler to the left */
+  }
+
+  /* Navbar links and menu */
+  .navbar-nav {
+    flex-direction: column; /* Stack items vertically */
+    text-align: right; /* Align items to the right */
+    background-color: #e6edef; /* Match the navbar background color */
+  }
+
+  .nav-item {
+    margin-bottom: 10px; /* Optional: Adjust spacing between items */
+  }
+}

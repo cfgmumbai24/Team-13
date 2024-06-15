@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import Navbar from "./Components/navbar"; // Ensure the correct path
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './Style/LocationComponent.css'; // Ensure the correct path
 
 function LocationComponent() {
   const [location, setLocation] = useState(null);
@@ -66,26 +70,29 @@ function LocationComponent() {
   };
 
   return (
-    <div className="location-component">
-      {error && <p className="error-message">Error: {error}</p>}
-      {location ? (
-        <div className="location-info">
-          <p>Latitude: {location.latitude}, Longitude: {location.longitude}</p>
-          <ul className="business-list">
-            {businesses.map((business, index) => (
-              <li key={index} className="business-item">
-                <h2>{business.name}</h2>
-                <p>{business.description}</p>
-                {business.images && business.images.map((image, i) => (
-                  <img key={i} src={image} alt={business.name} className="business-image" />
-                ))}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ) : (
-        <p>Loading location...</p>
-      )}
+    <div>
+      <Navbar />
+      <div className="location-component">
+        {error && <p className="error-message">Error: {error}</p>}
+        {location ? (
+          <div className="location-info">
+            <p>Latitude: {location.latitude}, Longitude: {location.longitude}</p>
+            <ul className="business-list">
+              {businesses.map((business, index) => (
+                <li key={index} className="business-item">
+                  <h2>{business.name}</h2>
+                  <p>{business.description}</p>
+                  {business.images && business.images.map((image, i) => (
+                    <img key={i} src={image} alt={business.name} className="business-image" />
+                  ))}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <p>Loading location...</p>
+        )}
+      </div>
     </div>
   );
 }

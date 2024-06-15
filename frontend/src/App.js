@@ -4,10 +4,11 @@ import Home from "./pages/home";
 import Jobs from "./pages/jobs";
 import Landing from "./pages/landing";
 import Display from "./pages/display";
+import DairyFarmingContent from "./pages/study/agriculture";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import BusinessList from "./components/BusinessList";
 import UserProfileForm from "./components/UserProfile";
-import LocationComponent from "./pages/home/Components/LocationComponent";
+import LocationComponent from "./pages/Location";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/display" element={<Display />} />
+          <Route path="/location" element={<LocationComponent />} />
         </Routes>
       </Router>
     </div>
