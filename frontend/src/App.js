@@ -8,6 +8,11 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import BusinessList from "./components/BusinessList";
 import UserProfileForm from "./components/UserProfile";
 import LocationComponent from "./pages/home/Components/LocationComponent";
+import DairyFarmingContent from "./pages/study/agriculture";
+import NatureGuideContent from "./pages/study/nature";
+import PineNeedleGasificationContent from "./pages/study/renewable";
+import EcoTourismContent from "./pages/study/house";
+
 
 function App() {
   return (
@@ -20,6 +25,10 @@ function App() {
           <Route path="/landing" element={<Landing />} />
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/display" element={<Display />} />
+          <Route path="/agriculture" element={<DairyFarmingContent />} />
+          <Route path="/nature" element={<NatureGuideContent />} />
+          <Route path="/renewable" element={<PineNeedleGasificationContent />} />
+          <Route path="/ecohouse" element={<EcoTourismContent />} />
         </Routes>
       </Router>
     </div>
