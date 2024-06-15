@@ -1,105 +1,36 @@
-/* Basic Reset */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* Navbar.css */
+
+/* Logo size and alignment */
+.navbar-logo {
+  max-height: 50px; /* Adjust as needed */
+  max-width: 500px; /* Adjust as needed */
+}
+
+/* Navbar background color */
+.navbar {
+  background-color: #e6edef !important; /* Override any other background color */
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  /* Navbar alignment */
+  .navbar-brand {
+    margin-right: auto !important; /* Align logo to the left */
   }
-  
-  /* Navbar Styles */
-  .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #fff;
-    padding: 1rem 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    position: relative;
+
+  /* Navbar toggle button */
+  .navbar-toggler {
+    order: 1; /* Move the toggler to the left */
   }
-  
-  .navbar-logo{
-    margin-left:10px;
-    height: 50px;
-    width: 120px;
+
+  /* Navbar links and menu */
+  .navbar-nav {
+    flex-direction: column; /* Stack items vertically */
+    text-align: right; /* Align items to the right */
+    background-color: #e6edef; /* Match the navbar background color */
   }
-  
-  .navbar-links {
-    display: flex;
-    align-items: center;
+
+  .nav-item {
+    margin-bottom: 10px; /* Optional: Adjust spacing between items */
   }
-  
-  .navbar-menu {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  .navbar-menu li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1rem;
-  }
-  
-  .navbar-menu li a:hover {
-    color: #00bfff;
-  }
-  
-  .social-icons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-  }
-  
-  .social-icon {
-    text-decoration: none;
-    color: #333;
-    font-size: 1.2rem;
-  }
-  
-  .social-icon:hover {
-    color: #00bfff;
-  }
-  
-  /* Mobile Menu */
-  .navbar-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-    gap: 5px;
-  }
-  
-  .navbar-toggle .bar {
-    height: 3px;
-    width: 25px;
-    background-color: #333;
-    border-radius: 10px;
-  }
-  
-  
-  @media screen and (max-width: 768px) {
-    .navbar-menu {
-      display: none;
-      position: absolute;
-      top: 60px;
-      left: 0;
-      width: 100%;
-      background-color: #fff;
-      flex-direction: column;
-      gap: 1rem;
-      padding: 1rem;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-  
-    .navbar-menu li a {
-      font-size: 1.2rem;
-    }
-  
-    .navbar-toggle {
-      display: flex;
-    }
-  
-    .navbar.active .navbar-menu {
-      display: flex;
-    }
-   
-  }
-  
+}

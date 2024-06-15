@@ -14,9 +14,9 @@ function QuestionsComponent() {
     setAnswer(selectedAnswer);
     // Redirect based on the selected answer
     if (selectedAnswer === 'Starting/Expanding a business') {
-      navigate('/');
-    } else if (selectedAnswer === 'Exploring jobs near me') {
       navigate('/jobs');
+    } else if (selectedAnswer === 'Exploring jobs near me') {
+      navigate('/');
     }
   };
 
