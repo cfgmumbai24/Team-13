@@ -86,5 +86,6 @@ sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
 
 # Display recommendations
 print("The preference list for ")
+
 for business, score in sorted_scores:
- return 
+ return business
