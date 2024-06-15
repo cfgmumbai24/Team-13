@@ -1,6 +1,6 @@
 import React from 'react';
 import '../Style/Navbar.css';
-import myimg from '../assets/margshala_image.png';
+import myimg from '../Assets/margshala_image.png';
 
 const Navbar = () => {
   return (
