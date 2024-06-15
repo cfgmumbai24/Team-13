@@ -41,6 +41,7 @@ function QuestionsComponent() {
             className={styles.button}
             onClick={() => handleAnswer(option)}
           >
+            
             {option}
           </button>
         ))}

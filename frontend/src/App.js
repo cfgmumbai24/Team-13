@@ -2,6 +2,9 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
 import Home from "./pages/home";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BusinessList from "./components/BusinessList";
+import UserProfileForm from "./components/UserProfile";
+import LocationComponent from "./pages/home/Components/LocationComponent";
 
 function App() {
   return (
@@ -13,9 +16,18 @@ function App() {
         </Routes>
       </Router>
 
+
       <main>
         <BusinessList />
       </main>
+
+      {/* <main>
+        <BusinessList />
+      </main>
+
+      <main>
+          <UserProfileForm />
+      </main> */}
     </div>
   );
 }
