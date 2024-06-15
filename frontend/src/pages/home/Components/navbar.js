@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <a className="navbar-brand" href="#">
-        <img src={myimg} alt="logo" className="navbar-logo" classNam="img"/>
+        <img src={myimg} alt="logo" className="navbar-logo" />
       </a>
       <button
         className="navbar-toggler"
