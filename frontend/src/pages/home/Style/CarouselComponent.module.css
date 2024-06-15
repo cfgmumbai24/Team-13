@@ -9,4 +9,7 @@
   .carouselText {
     color: white;
   }
-  
+  #img{
+    height: 25px;
+    width:50px;
+  }

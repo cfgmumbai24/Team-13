@@ -71,6 +71,10 @@
     background-color: #333;
     border-radius: 10px;
   }
+  .img{
+    height: 25px;
+    width: 50px;
+  }
   
   @media screen and (max-width: 768px) {
     .navbar-menu {
@@ -96,6 +100,10 @@
   
     .navbar.active .navbar-menu {
       display: flex;
+    }
+    .img{
+      height: 25px;
+      width: 50px;
     }
   }
   

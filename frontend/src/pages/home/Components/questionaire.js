@@ -1,62 +1,108 @@
 import React, { useState } from 'react';
 import styles from '../Style/questionsComponent.module.css';
 
-const questions = [
+const assetsQuestions = [
   {
-    question: 'Do you like React?',
-    options: ['Yes', 'No'],
+    question: 'What are the assets you own or can manage to arrange?',
+    options: [
+      'Land area',
+      'Pine needles',
+      'Storage space',
+      'Enough sightseeing spots around the location',
+      'Infrastructure facilities',
+      'Advertisement and promotion capital',
+      'Camping kit and basic amenities',
+      'Camera',
+      'Local rich natural areas with diverse bird and wildlife',
+      'Land for sheltering',
+      'Cattle',
+      'Cattle feedstock',
+    ],
   },
+];
+
+const skillsQuestions = [
   {
-    question: 'Is JavaScript your favorite language?',
-    options: ['Yes', 'No'],
-  },
-  {
-    question: 'Do you use Git for version control?',
-    options: ['Yes', 'No'],
+    question: 'Which of the following are you interested in?',
+    options: [
+      'Technical training',
+      'Power operators',
+      'Maintenance of machines',
+      'Hospitality skills',
+      'Verbal skills',
+      'Photography',
+      'Knowledge',
+      'Animal keeping',
+      'Animal healthcare',
+      'Dairy product development',
+    ],
   },
 ];
 
 function QuestionsComponent() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState({
+    assets: [],
+    skills: [],
+  });
 
-  const handleAnswer = (option) => {
-    // Check if the option is already selected
-    if (!answers.includes(option)) {
-      setAnswers([...answers, option]); // Add the option to answers array
-    } else {
-      setAnswers(answers.filter((ans) => ans !== option)); // Remove the option if already selected
-    }
+  const handleAnswer = (questionType, option) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionType]: prevAnswers[questionType].includes(option)
+        ? prevAnswers[questionType].filter((ans) => ans !== option)
+        : [...prevAnswers[questionType], option],
+    }));
   };
 
   const handleNext = () => {
-    // Move to the next question
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < assetsQuestions.length + skillsQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // All questions answered
-      console.log('Answers:', answers);
-      alert('Thank you for answering the questions!');
+      console.log('All Answers:', answers);
+      alert('Thank you for submitting your answers!');
+      // Here you can implement logic to send answers to backend or further processing
     }
   };
 
   return (
     <div className={styles.questionnaire}>
-      <h2>{questions[currentQuestionIndex].question}</h2>
-      <div>
-        {questions[currentQuestionIndex].options.map((option, index) => (
-          <label key={index} className={styles.checkboxLabel}>
-            <input
-              type="checkbox"
-              checked={answers.includes(option)}
-              onChange={() => handleAnswer(option)}
-            />
-            {option}
-          </label>
-        ))}
+      <div className={styles.questionContainer}>
+        <h3>
+          {currentQuestionIndex < assetsQuestions.length
+            ? assetsQuestions[currentQuestionIndex].question
+            : skillsQuestions[currentQuestionIndex - assetsQuestions.length].question}
+        </h3>
+        <div>
+          {currentQuestionIndex < assetsQuestions.length
+            ? assetsQuestions[currentQuestionIndex].options.map((option, idx) => (
+                <label key={idx} className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={answers.assets.includes(option)}
+                    onChange={() => handleAnswer('assets', option)}
+                  />
+                  {option}
+                </label>
+              ))
+            : skillsQuestions[currentQuestionIndex - assetsQuestions.length].options.map(
+                (option, idx) => (
+                  <label key={idx} className={styles.checkboxLabel}>
+                    <input
+                      type="checkbox"
+                      checked={answers.skills.includes(option)}
+                      onChange={() => handleAnswer('skills', option)}
+                    />
+                    {option}
+                  </label>
+                )
+              )}
+        </div>
       </div>
       <button className={styles.button} onClick={handleNext}>
-        Next
+        {currentQuestionIndex < assetsQuestions.length + skillsQuestions.length - 1
+          ? 'Next'
+          : 'Submit'}
       </button>
     </div>
   );
