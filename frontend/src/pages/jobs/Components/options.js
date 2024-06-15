@@ -83,7 +83,7 @@ function OptionComponent() {
         <h2>How to Apply</h2>
         <p>To apply for the Swarozgar Fellowship, please click the link below. Make sure to provide all the necessary details and documents.</p>
         <button className="applyButton">
-          <a href="https://forms.gle/your-google-form-url" target="_blank" rel="noopener noreferrer">
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScWRdIlPMrWfUMcFCBMuv2iLBiV_xnkVtSe5IiyYq6d3bdf5A/viewform" target="_blank" rel="noopener noreferrer">
             Apply Now
           </a>
         </button>
