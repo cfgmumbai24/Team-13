@@ -14,13 +14,13 @@ function OptionComponent() {
     setAnswer(selectedAnswer);
     // Redirect based on the selected answer
     if (selectedAnswer === 'Starting/Expanding a business') {
-      navigate('/jobs');
+      navigate('/location');
     } else if (selectedAnswer === 'Exploring jobs near me') {
       navigate('/');
     } else if (selectedAnswer === 'I need to make a network') {
       navigate('/');
     } else if (selectedAnswer === 'I need more emplyees') {
-      navigate('/');
+      navigate('/jobopening');
     } else if (selectedAnswer === 'I need resources for my business') {
       navigate('/');
     }

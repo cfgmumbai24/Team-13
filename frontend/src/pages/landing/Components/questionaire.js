@@ -19,7 +19,7 @@ function QuestionsComponent() {
       navigate('/');
     }
     else if (selectedAnswer === 'Businesses near me') {
-      navigate('/jobs');
+      navigate('/location');
     }
   };
 
