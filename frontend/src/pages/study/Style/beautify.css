@@ -1,0 +1,111 @@
+/* DairyFarmingContent.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Dark text color for contrast */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px 40px; /* Padding on left and right */
+    background-color: #fff; /* White background for the content */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2, h3 {
+    color: #003366; /* Dark blue color for headings */
+  }
+  
+  p, ol, ul {
+    line-height: 1.6;
+  }
+  
+  ol, ul {
+    padding-left: 20px;
+  }
+  
+  .navbar {
+    background-color: #003366; /* Dark blue background for the navbar */
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .navbar a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 15px;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  .error-message {
+    color: #d9534f; /* Red color for error messages */
+    font-weight: bold;
+  }
+  
+  .location-info {
+    background-color: #e6f2ff; /* Light blue background for location info */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  .business-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .business-item {
+    background-color: #e6f2ff; /* Light blue background for business items */
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .business-item h2 {
+    margin-top: 0;
+  }
+  
+  .business-item img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-top: 10px;
+  }
+  
+  .applyButton {
+    background-color: #003366; /* Dark blue background for apply button */
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    display: inline-block;
+  }
+  
+  .applyButton:hover {
+    background-color: #00509e; /* Slightly lighter blue on hover */
+  }
+  
+  .references {
+    margin-top: 20px;
+  }
+  
+  .references ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .references ul li {
+    margin-bottom: 10px;
+  }
+  
