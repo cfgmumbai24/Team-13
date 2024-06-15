@@ -1,65 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import '../Style/option.css'; // Assuming this is the correct CSS file
-import NewOpeningComponent from './Components/newopening'; 
-// Import images if they are defined elsewhere
-// import whatis from '../path/to/whatis.jpg';
-// import swaroz from '../path/to/swaroz.jpg';
+import '../Style/option.css'; 
 
-const question = {
-  question: 'SWAROZGAR FELLOWSHIP',
-};
 
 function OptionComponent() {
-  const [location, setLocation] = useState(null);
-  const [address, setAddress] = useState('');
-  const [error, setError] = useState(null);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(
-        async (position) => {
-          const { latitude, longitude } = position.coords;
-          setLocation({ latitude, longitude });
-          await fetchAddress(latitude, longitude);
-        },
-        (error) => {
-          setError(error.message);
-          console.error("Error getting geolocation:", error);
-        }
-      );
-    } else {
-      setError("Geolocation is not supported by this browser.");
-    }
-  }, []);
-
-  const fetchAddress = async (latitude, longitude) => {
-    try {
-      const response = await axios.post('/api/get_address', {
-        latitude,
-        longitude
-      });
-      setAddress(response.data.address);
-    } catch (error) {
-      setError(`Error fetching address: ${error.message}`);
-    }
-  };
+  
 
   return (
     <div className="container">
-      {error && <p>Error: {error}</p>}
-      {location ? (
-        <p>
-          Latitude: {location.latitude}, Longitude: {location.longitude}
-        </p>
-      ) : (
-        <p>Loading location...</p>
-      )}
-      {address && <p>Address: {address}</p>}
       
-      <h1>{question.question}</h1>
+      
+      {/* <h1>{question.question}</h1> */}
 
       <div className="section whatIs">
         <h2>What is Swarozgar Fellowship?</h2>
@@ -106,7 +58,7 @@ function OptionComponent() {
         <p>Meet some of our successful fellows who have started and grown their businesses with the help of the Swarozgar Fellowship.</p>
         <div className="achieversList">
           <div className="achiever">
-            <img src={swaroz} alt="Swarozgar Fellowship Achiever" />
+            {/* <img src={swaroz} alt="Swarozgar Fellowship Achiever" /> */}
           </div>
         </div>
       </div>
