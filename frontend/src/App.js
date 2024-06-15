@@ -6,6 +6,9 @@ import Landing from "./pages/landing";
 import Display from "./pages/display";
 import LocationComponent from "./pages/Location";
 import DairyFarmingContent from "./pages/study";
+import NatureGuideContent from "./pages/nature/nature";
+import PineNeedleGasificationContent from "./pages/renewable/renewable";
+import EcoTourismContent from "./pages/ecohome/house";
 
 function App() {
   return (
@@ -18,7 +21,10 @@ function App() {
           <Route path="/jobs" element={<Jobs />} />
           <Route path="/display" element={<Display />} />
           <Route path="/location" element={<LocationComponent />} />
-          <Route path="/dairy" element={<DairyFarmingContent />} />
+          <Route path="/agriculture" element={<DairyFarmingContent />} />
+          <Route path="/nature" element={<NatureGuideContent />} />
+          <Route path="/renewable" element={<PineNeedleGasificationContent />} />
+          <Route path="/ecohouse" element={<EcoTourismContent />} />
         </Routes>
       </Router>
     </div>
