@@ -1,0 +1,85 @@
+.container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .whatIs {
+    background-color: #e0f7fa; /* Light Cyan */
+  }
+  
+  .whatYouGet {
+    background-color: #fff9c4; /* Light Yellow */
+  }
+  
+  .oppertunity {
+    background-color: #ffe0b2;
+  }
+  .achievers {
+    background-color: #ffe0b2; /* Light Orange */
+  }
+  
+  .preRequisites {
+    background-color: #d1c4e9; /* Light Purple */
+  }
+  
+  .howToApply {
+    background-color: #c8e6c9; /* Light Green */
+  }
+  
+  .section h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .section p, .section ul {
+    font-size: 1em;
+    line-height: 1.5;
+  }
+  
+  .achieversList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .achiever {
+    flex: 1 1 calc(50% - 20px); /* White background for achievers */
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+  }
+  
+  @media (max-width: 768px) {
+    .achiever {
+      flex: 1 1 100%;
+    }
+  }
+
+  .applyButton {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .applyButton a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .applyButton:hover {
+    background-color: #0056b3;
+  }
+  

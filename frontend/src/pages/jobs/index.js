@@ -4,13 +4,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./Style/index.css"
 import OptionComponent from "./Components/options";
 import CarouselComponent from "./Components/carousal";
+import Style from "./Style/option.css"
 
 function Jobs() {
     return (
       <div className={styles.container}>
         <Navbar/> 
         <OptionComponent/>
-        <CarouselComponent/>
       </div>
     );
   }
