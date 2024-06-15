@@ -4,7 +4,7 @@ import myimg from '../Assets/margshala_image.png';
 
 const Navbar = () => {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav className="navbar navbar-expand-lg">
       <a className="navbar-brand" href="#">
         <img src={myimg} alt="logo" className="navbar-logo" />
       </a>
@@ -20,8 +20,8 @@ const Navbar = () => {
         <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul className="navbar-nav mr-auto">
+      <div className="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+        <ul className="navbar-nav">
           <li className="nav-item active">
             <a className="nav-link" href="#">
               Home <span className="sr-only">(current)</span>
@@ -46,26 +46,18 @@ const Navbar = () => {
             </a>
             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
               <a className="dropdown-item" href="#">
-                Action
+                <i className="fas fa-action"></i> Action
               </a>
               <a className="dropdown-item" href="#">
-                Another action
+                <i className="fas fa-another-action"></i> Another action
               </a>
               <div className="dropdown-divider"></div>
               <a className="dropdown-item" href="#">
-                Something else here
+                <i className="fas fa-something-else"></i> Something else here
               </a>
             </div>
           </li>
         </ul>
-      </div>
-
-      <div className="social-icons">
-        <a href="#facebook" className="social-icon"><i className="fab fa-facebook-f"></i></a>
-        <a href="#twitter" className="social-icon"><i className="fab fa-twitter"></i></a>
-        <a href="#linkedin" className="social-icon"><i className="fab fa-linkedin-in"></i></a>
-        <a href="#youtube" className="social-icon"><i className="fab fa-youtube"></i></a>
-        <a href="#instagram" className="social-icon"><i className="fab fa-instagram"></i></a>
       </div>
     </nav>
   );
