@@ -1,18 +1,18 @@
 import React from "react";
 import Navbar from "./Components/navbar";
-
 import 'bootstrap/dist/css/bootstrap.min.css';
-import CarouselComponent from "./Components/carousal";
 import styles from "./Style/index.css"
 import QuestionsComponent from "./Components/questionaire";
-function Home() {
+import CarouselComponent from "./Components/carousal";
+
+function Jobs() {
     return (
       <div className={styles.container}>
         <Navbar/> 
-        <QuestionsComponent/>
+        jobs
         <CarouselComponent/>
       </div>
     );
   }
   
-  export default Home;
+  export default Jobs;

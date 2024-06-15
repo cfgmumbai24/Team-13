@@ -1,51 +1,109 @@
 import React, { useState } from 'react';
-import styles from "../Style/questionsComponent.module.css"
+import styles from '../Style/questionsComponent.module.css';
 
-const questions = [
+const assetsQuestions = [
   {
-    question: "Do you like React?",
-    options: ["Yes", "No"]
+    question: 'What are the assets you own or can manage to arrange?',
+    options: [
+      'Land area',
+      'Pine needles',
+      'Storage space',
+      'Enough sightseeing spots around the location',
+      'Infrastructure facilities',
+      'Advertisement and promotion capital',
+      'Camping kit and basic amenities',
+      'Camera',
+      'Local rich natural areas with diverse bird and wildlife',
+      'Land for sheltering',
+      'Cattle',
+      'Cattle feedstock',
+    ],
   },
+];
+
+const skillsQuestions = [
   {
-    question: "Is JavaScript your favorite language?",
-    options: ["Yes", "No"]
+    question: 'Which of the following are you interested in?',
+    options: [
+      'Technical training',
+      'Power operators',
+      'Maintenance of machines',
+      'Hospitality skills',
+      'Verbal skills',
+      'Photography',
+      'Knowledge',
+      'Animal keeping',
+      'Animal healthcare',
+      'Dairy product development',
+    ],
   },
-  {
-    question: "Do you use Git for version control?",
-    options: ["Yes", "No"]
-  }
 ];
 
 function QuestionsComponent() {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [answers, setAnswers] = useState([]);
+  const [answers, setAnswers] = useState({
+    assets: [],
+    skills: [],
+  });
 
-  const handleAnswer = (answer) => {
-    setAnswers([...answers, answer]);
-    if (currentQuestionIndex < questions.length - 1) {
+  const handleAnswer = (questionType, option) => {
+    setAnswers((prevAnswers) => ({
+      ...prevAnswers,
+      [questionType]: prevAnswers[questionType].includes(option)
+        ? prevAnswers[questionType].filter((ans) => ans !== option)
+        : [...prevAnswers[questionType], option],
+    }));
+  };
+
+  const handleNext = () => {
+    if (currentQuestionIndex < assetsQuestions.length + skillsQuestions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      // All questions answered
-      console.log('Answers:', answers);
-      alert('Thank you for answering the questions!');
+      console.log('All Answers:', answers);
+      alert('Thank you for submitting your answers!');
+      // Here you can implement logic to send answers to backend or further processing
     }
   };
 
   return (
     <div className={styles.questionnaire}>
-      <h2>{questions[currentQuestionIndex].question}</h2>
-      <div>
-        {questions[currentQuestionIndex].options.map((option, index) => (
-          <button
-            key={index}
-            className={styles.button}
-            onClick={() => handleAnswer(option)}
-          >
-            
-            {option}
-          </button>
-        ))}
+      <div className={styles.questionContainer}>
+        <h3>
+          {currentQuestionIndex < assetsQuestions.length
+            ? assetsQuestions[currentQuestionIndex].question
+            : skillsQuestions[currentQuestionIndex - assetsQuestions.length].question}
+        </h3>
+        <div>
+          {currentQuestionIndex < assetsQuestions.length
+            ? assetsQuestions[currentQuestionIndex].options.map((option, idx) => (
+                <label key={idx} className={styles.checkboxLabel}>
+                  <input
+                    type="checkbox"
+                    checked={answers.assets.includes(option)}
+                    onChange={() => handleAnswer('assets', option)}
+                  />
+                  {option}
+                </label>
+              ))
+            : skillsQuestions[currentQuestionIndex - assetsQuestions.length].options.map(
+                (option, idx) => (
+                  <label key={idx} className={styles.checkboxLabel}>
+                    <input
+                      type="checkbox"
+                      checked={answers.skills.includes(option)}
+                      onChange={() => handleAnswer('skills', option)}
+                    />
+                    {option}
+                  </label>
+                )
+              )}
+        </div>
       </div>
+      <button className={styles.button} onClick={handleNext}>
+        {currentQuestionIndex < assetsQuestions.length + skillsQuestions.length - 1
+          ? 'Next'
+          : 'Submit'}
+      </button>
     </div>
   );
 }
