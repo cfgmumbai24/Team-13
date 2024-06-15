@@ -1,0 +1,15 @@
+.carouselContainer {
+    width: 100%;
+    max-width: 600px; /* Adjust as per your design */
+    margin: 20 auto;
+    background-color: lightblue;
+    padding: 20px;
+  }
+  
+  .carouselText {
+    color: white;
+  }
+  #img{
+    height: 25px;
+    width: 50px;
+  }
