@@ -4,11 +4,14 @@ import Home from "./pages/home";
 import Jobs from "./pages/jobs";
 import Landing from "./pages/landing";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import BusinessList from "./components/BusinessList";
+import UserProfileForm from "./components/UserProfile";
+import LocationComponent from "./pages/home/Components/LocationComponent";
 
 function App() {
   return (
     <div className="App">
-      
+
       <Router>
         <Routes>
           {/* <Route exact path="/home" element={<Home />} /> */}
