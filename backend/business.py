@@ -210,4 +210,3 @@ if __name__ == '__main__':
         print("Created 'user_profiles' database and 'profiles' collection.")
 
     app.run(debug=True)
-
