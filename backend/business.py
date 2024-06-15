@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
-from flask_cors import CORS
 from pymongo import MongoClient
 from geopy.exc import GeocoderTimedOut, GeocoderServiceError
 
 from geopy.geocoders import Nominatim
+from flask_cors import CORS  # Import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app) 
 
 # Connect to MongoDB for business.py
 client = MongoClient('localhost', 27017)
@@ -18,6 +18,27 @@ client_profiles = MongoClient('localhost', 27017)
 db_profiles = client_profiles['user_profiles']
 collection_profiles = db_profiles['profiles']
 
+@app.route('/search', methods=['GET'])
+def get_jobs():
+
+    # Perform case-insensitive search for the query in the name or description
+    businesses = list(collection.find())
+
+    if not businesses:
+        return jsonify({"error": "Business not found"}), 404
+
+    # Prepare the response
+    result = []
+    for business in businesses:
+        result.append({
+            "name": business["name"],
+            "description": business["description"],
+            "images": business["images"],
+            "latitude":business["latitude"],
+            "longitude":business["longitude"]
+        })
+    
+    return jsonify(result)
 # Routes for business.py
 @app.route('/business', methods=['GET'])
 def get_business():
@@ -96,6 +117,103 @@ def address():
     address = get_address(latitude, longitude)
     return jsonify({'address': address})
 
+# Example business data (could be loaded from a database or file)
+business_data = {
+    "businesses": [
+        {
+            "name": "Renewable assets",
+            "asset_requirements": [
+                {"asset": "Land area", "weight": 3},
+                {"asset": "Pine needles", "weight": 2},
+                {"asset": "Storage space", "weight": 1}
+            ],
+            "skill_requirements": [
+                {"skill": "Technical training", "weight": 3},
+                {"skill": "Power operators", "weight": 2},
+                {"skill": "Maintenance of machines", "weight": 1}
+            ]
+        },
+        {
+            "name": "Homestays",
+            "asset_requirements": [
+                {"asset": "enough sightseeing spots around the location", "weight": 3},
+                {"asset": "Infrastructure facilities", "weight": 2},
+                {"asset": "Advertisement and promotion capital.", "weight": 1}
+            ],
+            "skill_requirements": [
+                {"skill": "hospitality skills", "weight": 3},
+                {"skill": "verbal skills", "weight": 2}
+            ]
+        },
+        {
+            "name": "Tourism",
+            "asset_requirements": [
+                {"asset": "Camping kit and basic amenities", "weight": 1},
+                {"asset": "Camera", "weight": 2},
+                {"asset": "Local rich natural areas with diverse bird and wildlife", "weight": 3}
+            ],
+            "skill_requirements": [
+                {"skill": "verbal skill", "weight": 3},
+                {"skill": "photography", "weight": 1},
+                {"skill": "knowledge", "weight": 2}
+            ]
+        },
+        {
+            "name": "Dairy Farming",
+            "asset_requirements": [
+                {"asset": "Land for sheltering", "weight": 3},
+                {"asset": "Cattle", "weight": 2},
+                {"asset": "Cattle feedstock", "weight": 1}
+            ],
+            "skill_requirements": [
+                {"skill": "animal keeping", "weight": 3},
+                {"skill": "animal healthcare", "weight":1},
+                {"skill": "dairy product development", "weight": 2}
+            ]
+        }
+    ]
+}
+
+businesses = business_data["businesses"]
+
+def calculate_weighted_score(user_input, business):
+    score = 0
+    for asset in business["asset_requirements"]:
+        if asset["asset"] in user_input["asset_requirements"]:
+            score += asset["weight"] * user_input["asset_requirements"][asset["asset"]]
+    for skill in business["skill_requirements"]:
+        if skill["skill"] in user_input["skill_requirements"]:
+            score += skill["weight"] * user_input["skill_requirements"][skill["skill"]]
+    return score
+
+@app.route('/recommend', methods=['POST'])
+def recommend():
+    user_input = request.json
+    print("Received user input:", user_input)
+
+    # Calculate scores for each business
+    scores = []
+    for business in businesses:
+        score = calculate_weighted_score(user_input, business)
+        scores.append((business["name"], score))
+
+    # Sort businesses by score
+    sorted_scores = sorted(scores, key=lambda x: x[1], reverse=True)
+
+    # Extract sorted business names
+    business_names = [business[0] for business in sorted_scores]
+
+    # Fetch matched businesses from MongoDB
+    matched_businesses = list(collection.find({
+        "name": {"$in": business_names}
+    }))
+
+    # Sort matched businesses in the order of sorted_scores
+    sorted_businesses = sorted(matched_businesses, key=lambda x: business_names.index(x["name"]))
+
+    return jsonify(sorted_businesses)
+
+
 if __name__ == '__main__':
     # Ensure user_profiles database and profiles collection exist
     if 'user_profiles' not in client.list_database_names():
@@ -105,3 +223,5 @@ if __name__ == '__main__':
         print("Created 'user_profiles' database and 'profiles' collection.")
 
     app.run(debug=True)
+
+

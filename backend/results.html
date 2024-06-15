@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Recommended Job Opportunities</h1>
+    <ul>
+        {% for business in businesses %}
+            <li>
+                <h2>{{ business.name }}</h2>
+                <p>{{ business.description }}</p>
+                {% if business.images %}
+                    {% for image in business.images %}
+                        <img src="{{ image }}" alt="{{ business.name }}" width="100">
+                    {% endfor %}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,46 +1,59 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styles from '../Style/optionsComponent.module.css';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const question = {
   question: 'What are you looking for ?',
 };
 
 function OptionComponent() {
-  const [answer, setAnswer] = useState(null);
-  const navigate = useNavigate();
+  const [location, setLocation] = useState(null);
+  const [address, setAddress] = useState('');
+  const [error, setError] = useState(null);
 
-  const handleAnswer = (selectedAnswer) => {
-    setAnswer(selectedAnswer);
-    // Redirect based on the selected answer
-    if (selectedAnswer === 'Starting/Expanding a business') {
-      navigate('/jobs');
-    } else if (selectedAnswer === 'Exploring jobs near me') {
-      navigate('/');
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          setLocation({ latitude, longitude });
+          // await fetchAddress(latitude, longitude);
+        },
+        (error) => {
+          setError(error.message);
+          console.error("Error getting geolocation:", error);
+        }
+      );
+    } else {
+      setError("Geolocation is not supported by this browser.");
+    }
+  }, []);
+
+  const fetchAddress = async (latitude, longitude) => {
+    try {
+      const response = await axios.post('/api/get_address', {
+        latitude,
+        longitude
+      });
+      setAddress(response.data.address);
+    } catch (error) {
+      setError(`Error fetching address: ${error.message}`);
     }
   };
 
+
+  
+
   return (
-    <div className={styles.questionnaire}>
-      <div className={styles.questionContainer}>
-        <h3>{question.question}</h3><br/>
-        <div className={styles.questionbox}>
-          <button
-            className={styles.button}
-            onClick={() => handleAnswer('Starting/Expanding a business')}
-          >
-            Starting/Expanding a business
-          </button>
-          <br/>
-          <br/>
-          <button
-            className={styles.button}
-            onClick={() => handleAnswer('Exploring jobs near me')}
-          >
-            Exploring jobs near me
-          </button>
-        </div>
-      </div>
+    <div>
+      {error && <p>Error: {error}</p>}
+      {location ? (
+        <p>
+          Latitude: {location.latitude}, Longitude: {location.longitude}
+        </p>
+      ) : (
+        <p>Loading location...</p>
+      )}
+      {address && <p>Address: {address}</p>}
     </div>
   );
 }

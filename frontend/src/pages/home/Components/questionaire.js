@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import styles from '../Style/questionsComponent.module.css';
 
 const assetsQuestions = [
@@ -60,8 +61,15 @@ function QuestionsComponent() {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       console.log('All Answers:', answers);
-      alert('Thank you for submitting your answers!');
-      // Here you can implement logic to send answers to backend or further processing
+      // Send answers to backend
+      axios.post('http://127.0.0.1:5000/recommend', answers)
+        .then(response => {
+          console.log('Recommendations:', response.data);
+          alert('Recommendations: ' + response.data);
+        })
+        .catch(error => {
+          console.error('Error fetching recommendations:', error);
+        });
     }
   };
 
@@ -76,27 +84,27 @@ function QuestionsComponent() {
         <div>
           {currentQuestionIndex < assetsQuestions.length
             ? assetsQuestions[currentQuestionIndex].options.map((option, idx) => (
+              <label key={idx} className={styles.checkboxLabel}>
+                <input
+                  type="checkbox"
+                  checked={answers.assets.includes(option)}
+                  onChange={() => handleAnswer('assets', option)}
+                />
+                {option}
+              </label>
+            ))
+            : skillsQuestions[currentQuestionIndex - assetsQuestions.length].options.map(
+              (option, idx) => (
                 <label key={idx} className={styles.checkboxLabel}>
                   <input
                     type="checkbox"
-                    checked={answers.assets.includes(option)}
-                    onChange={() => handleAnswer('assets', option)}
+                    checked={answers.skills.includes(option)}
+                    onChange={() => handleAnswer('skills', option)}
                   />
                   {option}
                 </label>
-              ))
-            : skillsQuestions[currentQuestionIndex - assetsQuestions.length].options.map(
-                (option, idx) => (
-                  <label key={idx} className={styles.checkboxLabel}>
-                    <input
-                      type="checkbox"
-                      checked={answers.skills.includes(option)}
-                      onChange={() => handleAnswer('skills', option)}
-                    />
-                    {option}
-                  </label>
-                )
-              )}
+              )
+            )}
         </div>
       </div>
       <button className={styles.button} onClick={handleNext}>
