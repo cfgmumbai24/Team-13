@@ -9,6 +9,7 @@ import img2 from '../Assets/harish.jpg';
 const CarouselComponent = () => {
   return (
     <div className={styles.carouselContainer}>
+      <h1>Success Stories</h1>
       <Carousel>
         <Carousel.Item>
           <img

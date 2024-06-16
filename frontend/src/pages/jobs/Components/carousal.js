@@ -1,7 +1,6 @@
 import React from 'react';
 import { Carousel } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Make sure to import Bootstrap CSS
-import styles from '../Style/CarouselComponent.module.css'; // Import CSS module for additional styling
+import styles from '../Style/CarouselComponent.module.css'; 
 import pramod from '../Assets/pramod.jpg';
 import img1 from '../Assets/tulsi.png';
 
