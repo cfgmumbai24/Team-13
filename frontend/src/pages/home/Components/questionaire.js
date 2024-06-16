@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import styles from '../Style/questionsComponent.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const assetsQuestions = [
   {
@@ -47,6 +48,8 @@ function QuestionsComponent() {
     skills: [],
   });
 
+  const navigate = useNavigate(); // Correctly using the useNavigate hook
+
   const handleAnswer = (questionType, option) => {
     setAnswers((prevAnswers) => ({
       ...prevAnswers,
@@ -65,7 +68,8 @@ function QuestionsComponent() {
       axios.post('http://127.0.0.1:5000/recommend', answers)
         .then(response => {
           console.log('Recommendations:', response.data);
-          alert('Recommendations: ' + response.data);
+          const ans = response.data[0][0].toLowerCase();
+          navigate(`/${ans}`);
         })
         .catch(error => {
           console.error('Error fetching recommendations:', error);
